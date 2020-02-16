@@ -11,3 +11,6 @@ Site: 2019.justctf.team
 #### Usage
 Main page: `http://localhost:8081`
 Admin: `http://localhost:8082`
+
+#### Author
+Created by [cypis](https://github.com/patryk4815).
