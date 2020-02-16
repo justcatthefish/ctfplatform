@@ -1,0 +1,84 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    restart: unless-stopped
+#    volumes:
+#      - ./frontend/dist:/frontend
+    links:
+      - web
+    ports:
+      - 8081:81
+      - 8082:82
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  db:
+    build: db
+    restart: unless-stopped
+    volumes:
+      - ./data/db/mysql:/var/lib/mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootctfplatform
+      - MYSQL_DATABASE=ctfplatform
+      - MYSQL_USER=ctfplatform
+      - MYSQL_PASSWORD=ctfplatform
+    expose:
+      - 3306
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  web:
+    build: web
+    restart: unless-stopped
+    environment:
+      - MYSQL_DSN=ctfplatform:ctfplatform@tcp(db:3306)/ctfplatform?charset=utf8&loc=UTC&time_zone=%27%2B00%3A00%27&parseTime=true&readTimeout=3s&timeout=3s&writeTimeout=3s
+      - HMAC_SECRET_KEY=32 chars secret here
+      - AES_SECRET_KEY=32 chars secret here
+      - CAPTCHA_SECRET=google recaptcha v3 secret token here
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8080/api/v1/healthcheck"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    links:
+      - db
+    expose:
+      - 8080
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  admin:
+    build: admin
+    restart: unless-stopped
+    environment:
+      - DJANGO_SETTINGS_MODULE=ctfplatformadmin.settings.dev
+      - GUNICORN_WORKERS=4
+      - GUNICORN_TIMEOUT=30
+      - APP_PORT=8080
+      - DATABASE_DB=ctfplatform
+      - DATABASE_USER=ctfplatform
+      - DATABASE_PASSWORD=ctfplatform
+      - DATABASE_HOST=db
+      - DATABASE_PORT=3306
+      - SECRET_KEY=django secret here
+    links:
+      - db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"

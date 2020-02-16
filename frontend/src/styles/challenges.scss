@@ -1,0 +1,510 @@
+$width: 1135px;
+$padding: 40px;
+
+@mixin flagBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 294px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+      background: #434343;
+      border-radius: 3px 0 0 3px;
+      padding: 12px 14px;
+      flex: 0 0 250px;
+      font-family: 'Rubik', sans-serif;
+      font-size: 15px;
+      color: rgba(255, 255, 255, .5);
+    }
+
+    button {
+      border-radius: 0 1.8px 1.8px 0;
+      flex: 0 0 42px;
+      height: 42px;
+
+      background: #3aadd4 url(../assets/images/checkbox_icon_black_big.svg) no-repeat center/22px 19px;
+    }
+  }
+
+}
+
+.page.challenges {
+
+  .inner {
+    width: 100%;
+    max-width: $width + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    header {
+      ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        color: #000;
+        font-size: 12px;
+        align-items: center;
+        justify-content: center;
+
+        .category {
+          padding: 6px 16px;
+          cursor: pointer;
+          border-radius: 4px;
+
+          &:not(:first-child) {
+            margin-left: 32px;
+          }
+
+          &.inactive {
+            opacity: .3;
+          }
+        }
+
+        .unsolved {
+          margin-left: 32px;
+
+          input {
+            display: none;
+
+            & + label {
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+
+              span {
+                width: 26px;
+                height: 26px;
+                border: 2px solid #3aadd4;
+                border-radius: 4px;
+              }
+
+              p {
+                color: #fff;
+                text-transform: uppercase;
+                margin-left: 8px;
+              }
+            }
+
+            &:checked + label span {
+              background: #3aadd4 url(../assets/images/icon_checkbox.svg) no-repeat center;
+            }
+          }
+        }
+      }
+
+      .submitFlag {
+        margin-top: 32px;
+
+        @include flagBox;
+      }
+
+      @media only screen and (max-width: 1000px) {
+        ul li.unsolved {
+          margin-top: 15px;
+          margin-left: 0;
+          flex: 100%;
+
+          input + label {
+            justify-content: center;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 890px) {
+        ul .category {
+          margin-bottom: 10px;
+
+          &:not(:first-child) {
+            margin-left: 10px;
+
+          }
+        }
+
+      }
+
+      @media only screen and (max-width: 360px) {
+        .search {
+          input {
+            flex: 1;
+          }
+        }
+      }
+    }
+
+    .list {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-right: -15px;
+      margin-left: -15px;
+
+      .challenge {
+        overflow: hidden;
+        cursor: pointer;
+        flex: 0 0 $width / 4;
+        margin-bottom: 24px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        &.inactive {
+          opacity: .3;
+        }
+
+        > .body {
+          background: #353535;
+          box-shadow: 0 25px 34px 0 rgba(0,0,0,.10);
+          border-radius: 4px;
+
+          .top {
+            height: 5px;
+            display: flex;
+
+            > span {
+              flex: 1;
+
+              &:first-child {
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+              }
+
+              &:last-child {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+              }
+            }
+          }
+
+          .info {
+            padding: 15px 20px;
+
+            h2 {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              font-size: 17px;
+              font-weight: 500;
+              color: #eaeaea;
+              margin-bottom: 11px;
+            }
+
+            ul {
+              list-style: none;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 15px;
+
+              li {
+                &.points:before, &.solved:before {
+                  display: inline-block;
+                  content: "";
+                  width: 15px;
+                  height: 14px;
+                  background: no-repeat center/contain;
+                  margin-right: 8px;
+                }
+
+                &.points:before {
+                  background-image: url(../assets/images/star_icon.svg);
+                }
+
+                &.solved:before {
+                  background-image: url(../assets/images/check_icon_zadanie.svg);
+                }
+              }
+            }
+
+            .more {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-top: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tabs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > header {
+      flex: 0 0 38px;
+      display: flex;
+      border-bottom: 1px solid #3aadd4;
+
+      > div {
+        color: #aeaeae;
+        padding: 10px 25px 8px;
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &.active {
+          position: relative;
+          border: 1px solid #3aadd4;
+          border-bottom: none;
+          border-radius: 7px 7px 0 0;
+
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #252525;
+          }
+        }
+      }
+    }
+
+    > .content {
+      padding-top: 24px;
+      display: none;
+
+      &.active {
+        flex: 1;
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+
+        .scrollable {
+          flex: 1;
+          overflow: auto;
+          scrollbar-color: #d8d8d8 rgba(216, 216, 216, .2);
+          scrollbar-width: thin;
+          padding-right: 10px;
+
+          &::-webkit-scrollbar {
+            width: 3px;
+            background-color: rgba(216, 216, 216, .2);
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: #d8d8d8;
+          }
+        }
+
+      }
+
+      > .title {
+        text-align: center;
+        font-size: 17px;
+        font-weight: 500;
+        color: #eaeaea;
+        margin-bottom: 25px;
+      }
+
+      &.info {
+        > header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 80%;
+          margin: 0 auto;
+
+          > div {
+            flex: 1;
+            text-align: center;
+          }
+
+          .points {
+            font-size: 15px;
+
+            &:before {
+              display: inline-block;
+              content: "";
+              width: 15px;
+              height: 14px;
+              margin-right: 8px;
+
+              background: url(../assets/images/star_icon.svg) no-repeat center/cover;
+            }
+          }
+
+          .first {
+            font-size: 15px;
+            font-weight: 500;
+
+            &:before {
+              display: inline-block;
+              vertical-align: middle;
+              content: "";
+              width: 34px;
+              height: 40px;
+              margin-right: 14px;
+
+              background: url(../assets/images/first_blood_icon.svg) no-repeat center/cover;
+            }
+          }
+
+          .categories {
+            font-size: 12px;
+            text-transform: uppercase;
+          }
+        }
+
+        > .description {
+          margin-top: 20px;
+          font-size: 15px;
+          line-height: 23px;
+
+          * {
+            margin: initial;
+            padding: initial;
+          }
+
+          img {
+            max-width: 100%;
+            display: block;
+          }
+
+          code {
+            background: #434343;
+            border-radius: 1px;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+          }
+
+          pre {
+            padding: 16px;
+            background: #434343;
+            border-radius: 1px;
+
+            code {
+              padding: 0;
+              line-height: 23px;
+            }
+          }
+
+          p {
+            margin-top: 1em;
+            margin-bottom: 1em;
+          }
+
+          ul, ol {
+            margin-top: 1em;
+            margin-bottom: 1em;
+            padding-left: 40px;
+          }
+
+          a {
+            color: #3aadd4;
+            text-decoration: underline;
+          }
+
+          > :last-child {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+          }
+        }
+
+        > .flag {
+          margin-top: 40px;
+
+          .solved {
+            font-size: 15px;
+            color: #5cf0bc;
+
+            &:after {
+              content: "";
+              display: inline-block;
+              width: 14px;
+              height: 12px;
+              margin-left: 8px;
+              background: url(../assets/images/checkbox_icon_green.svg) no-repeat center/cover;
+            }
+          }
+
+          .submitFlag {
+            @include flagBox;
+            margin-left: 0;
+
+            justify-content: flex-start;
+          }
+        }
+      }
+
+      &.solves {
+        .table {
+          width: 100%;
+          max-height: 400px;
+          overflow: auto;
+
+          table {
+            width: 400px;
+
+            thead {
+              th {
+                color: #fff;
+                font-size: 15px;
+                font-weight: 700;
+                text-align: left;
+                padding: 5px 0;
+              }
+            }
+
+            tbody {
+              td {
+                padding: 5px 20px 5px 0;
+
+                &:first-child {
+                  font-size: 15px;
+
+                  min-width: 40px;
+                }
+
+                a {
+                  color: #3aadd4;
+                  font-size: 13px;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (max-width: 480px) {
+      .content.info {
+        > header {
+          width: 100%;
+          flex-direction: column;
+
+          > div {
+            &:not(:first-child) {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (max-width: 360px) {
+      .content.info {
+        > .flag .submitFlag input {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

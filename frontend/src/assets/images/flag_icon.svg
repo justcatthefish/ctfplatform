@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="38px" viewBox="0 0 31 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>flag_icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="JCTF_LP_1280px_HOME" transform="translate(-627.000000, -253.000000)" fill="#3AADD4" fill-rule="nonzero">
+            <g id="1">
+                <g id="Group-8" transform="translate(388.000000, 163.000000)">
+                    <g id="Group-14">
+                        <path d="M243.731411,91.4160838 L242.924596,91.9091974 L242.924596,126.416698 L239,126.416698 L239,128 L248.462903,128 L248.462903,126.416698 L244.538225,126.416698 L244.538225,107.35741 C253.025429,103.45198 261.512796,112.522761 270,107.76795 C270,102.317247 270,96.8666254 270,91.4160838 C261.243776,96.3216516 252.487471,86.5105963 243.731411,91.4160838 Z" id="flag_icon"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

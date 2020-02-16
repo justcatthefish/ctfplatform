@@ -1,0 +1,51 @@
+$tableWidth: 800px;
+$padding: 40px;
+
+.page.teams {
+  .inner {
+    width: 100%;
+    max-width: $tableWidth + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    .table {
+      width: 100%;
+      overflow: auto;
+
+      table {
+        width: $tableWidth;
+
+        thead {
+          th {
+            font-size: 17px;
+            font-weight: 500;
+            padding: 11px 0;
+          }
+        }
+
+        tbody {
+          td {
+            font-size: 17px;
+            font-weight: 500;
+            padding: 11px 0;
+            text-align: center;
+
+            .avatar {
+              max-height: 45px;
+            }
+
+            .flag {
+              width: 50px;
+              height: 27px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

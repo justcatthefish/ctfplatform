@@ -1,0 +1,64 @@
+$formWidth: 340px;
+$padding: 40px;
+
+.page.login, .page.register {
+
+  .inner {
+    width: 100%;
+    max-width: $formWidth + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    .reset, .register {
+      font-weight: 500;
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .reset {
+      color: #3aadd4;
+    }
+
+    .register {
+      > span {
+        color: #3aadd4;
+      }
+    }
+
+    .customFile {
+      cursor: pointer;
+
+      > input[type="file"] {
+        display: none;
+
+        & + label {
+          .button {
+            border: 1px solid #2194bb;
+            border-radius: 1.8px;
+            background: transparent;
+            padding: 7px 12px;
+            color: #fff;
+            font-family: 'Rubik', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-right: 13px;
+          }
+
+          span {
+            font-weight: 500;
+            text-transform: none;
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+}

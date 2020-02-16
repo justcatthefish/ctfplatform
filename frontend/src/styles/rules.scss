@@ -1,0 +1,39 @@
+$width: 712px;
+$padding: 40px;
+
+.page.rules {
+  .inner {
+    width: 100%;
+    max-width: $width + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    ol {
+      font-size: 17px;
+      line-height: 21px;
+      margin-left: 1em;
+
+      li {
+        &:not(:first-child) {
+          margin-top: 20px;
+        }
+
+        padding-left: 10px;
+      }
+    }
+
+    a {
+      color: #3aadd4;
+      font-weight: 500;
+    }
+
+    b {
+      font-weight: 500;
+    }
+  }
+}

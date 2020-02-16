@@ -1,0 +1,130 @@
+$padding: 40px;
+
+.mainNavbar {
+  padding: 0 $padding;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 1px solid #3c3c3c;
+  z-index: 10;
+  position: relative;
+
+  @media only screen and (max-width: 420px) {
+    padding: 0 ($padding / 2);
+  }
+
+  .inner {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .rwdLogo, .rwdMenu {
+      display: none;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      padding: 16px;
+
+      li {
+        position: relative;
+
+        &:not(:first-child) {
+          margin-left: 20px;
+        }
+
+        &.logo {
+          a {
+            width: 58px;
+            height: 33px;
+            background: url(../assets/images/logo.svg) no-repeat;
+          }
+        }
+
+        &.active {
+          color: #3aadd4
+        }
+
+        a {
+          display: block;
+        }
+
+        .badge {
+          position: absolute;
+          top: -8px;
+          right: -18px;
+          background: #3aadd4;
+          border-radius: 3px;
+          padding: 4px 4px 2px;
+          font-size: 8px;
+          font-weight: 600;
+          color: #161616;
+          letter-spacing: 0.1px;
+          text-align: center;
+          min-width: 15px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 980px) {
+    .inner {
+      height: 65px;
+      justify-content: center;
+
+      .rwdLogo {
+        display: block;
+        width: 58px;
+        height: 33px;
+        background: url(../assets/images/logo.svg) no-repeat center/cover;
+        margin-left: auto;
+      }
+
+      .rwdMenu {
+        display: block;
+        width: 40px;
+        height: 40px;
+        background: url(../assets/images/rwd_icon.png) no-repeat center/cover;
+        margin-left: auto;
+        cursor: pointer;
+      }
+
+      ul {
+        display: none;
+      }
+
+      ul.main.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 65px;
+        padding: 0;
+
+        li {
+          &.logo { display: none;}
+
+          background: #1d2124;
+          padding: 10px 15px;
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 520px) {
+    ul.main.active {
+      width: 100%;
+      left: 0;
+      right: auto;
+    }
+  }
+}

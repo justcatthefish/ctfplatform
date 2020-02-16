@@ -1,0 +1,33 @@
+$formWidth: 340px;
+$padding: 40px;
+
+.page.settings {
+  .inner {
+    width: 100%;
+    max-width: $formWidth + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    .avatar {
+      text-align: center;
+
+      .customFile {
+        > input[type="file"] {
+          display: none;
+
+          & + label {
+            img {
+              cursor: pointer;
+              max-width: 128px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

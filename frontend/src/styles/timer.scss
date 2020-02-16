@@ -1,0 +1,56 @@
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  > div:not(.spacer) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+    min-width: 70px;
+
+    &:after {
+      content: attr(data-type);
+      text-align: justify;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  .spacer {
+    font-weight: 700;
+    font-size: 50px;
+    margin-left: 7px;
+    margin-right: 7px;
+
+    &:before {
+      display: block;
+      content: ":";
+    }
+  }
+
+  @media only screen and (max-width: 430px) {
+    > div {
+      &:not(.spacer) {
+        font-size: 32px;
+
+        &:after {
+          font-size: 11px;
+        }
+
+        min-width: initial;
+      }
+
+      &.spacer {
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 32px;
+      }
+
+    }
+  }
+}

@@ -1,0 +1,138 @@
+$width: 650px;
+$padding: 40px;
+
+.page.announcements {
+  .inner {
+    width: 100%;
+    max-width: $width + $padding * 2;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $padding;
+
+    @media only screen and (max-width: 420px) {
+      padding: 0 ($padding / 2);
+    }
+
+    .list {
+      .announcement {
+        &:not(:first-child) {
+          &:before {
+            content: "";
+            height: 1px;
+            background: #3a3a3a;
+            display: block;
+            margin: 24px 0;
+          }
+        }
+
+        header {
+          display: flex;
+          align-items: center;
+          margin-bottom: 9px;
+
+          h2 {
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 41px;
+          }
+
+          .label {
+            border: 1px solid #fff;
+            border-radius: 3px;
+            padding: 4px 13px;
+            opacity: .5;
+            font-size: 8.4px;
+            letter-spacing: .1px;
+            text-transform: uppercase;
+            margin-left: 12px;
+          }
+
+          .date {
+            margin-left: auto;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0;
+          }
+        }
+
+        > .description {
+          margin-top: 20px;
+          font-size: 15px;
+          line-height: 23px;
+
+          * {
+            margin: initial;
+            padding: initial;
+          }
+
+          img {
+            max-width: 100%;
+            display: block;
+          }
+
+          code {
+            background: #434343;
+            border-radius: 1px;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+          }
+
+          pre {
+            padding: 16px;
+            background: #434343;
+            border-radius: 1px;
+
+            code {
+              padding: 0;
+              line-height: 23px;
+            }
+          }
+
+          p {
+            margin-top: 1em;
+            margin-bottom: 1em;
+          }
+
+          ul, ol {
+            margin-top: 1em;
+            margin-bottom: 1em;
+            padding-left: 40px;
+          }
+
+          a {
+            color: #3aadd4;
+            text-decoration: underline;
+          }
+
+          > :last-child {
+            margin-bottom: 0 !important;
+            padding-bottom: 0 !important;
+          }
+        }
+
+        @media only screen and (max-width: 720px) {
+          header {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+
+            h2 {
+              order: 1;
+            }
+
+            .label {
+              order: 0;
+              margin-left: 0;
+            }
+
+            .date {
+              order: 2;
+              margin-left: initial;
+            }
+          }
+        }
+      }
+    }
+  }
+}
