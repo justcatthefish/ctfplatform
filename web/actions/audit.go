@@ -61,18 +61,24 @@ FROM
 		count(1) as flags_count
 	FROM 
 		audit
+	WHERE
+		audit.created_at BETWEEN ? AND ?
 ) as flags_count,
 (
 	SELECT
 		count(1) as teams_count
 	FROM 
 		team
+	WHERE
+		team.created_at < ?
 ) as teams_count,
 (
 	SELECT
 		COUNT(DISTINCT country) as countries_count
 	FROM 
 		team
+	WHERE
+		team.created_at < ?
 ) as countries_count,
 (
 	SELECT
@@ -80,7 +86,7 @@ FROM
 	FROM
 		task
 	WHERE 
-		id NOT IN (SELECT task_id FROM audit)
+		id NOT IN (SELECT task_id FROM audit WHERE audit.created_at BETWEEN ? AND ?)
 		AND started_at < NOW()
 ) as tasks_unsolved_count
 `
@@ -88,7 +94,7 @@ FROM
 		Start: time.Time(config.Config.StartCompetition),
 		End:   time.Time(config.Config.EndCompetition),
 	}
-	if err := s.unsafeDB.QueryRow(ctx, query).Scan(&info.FlagsCount, &info.TeamsCount, &info.CountriesCount, &info.TasksUnsolvedCount); err != nil {
+	if err := s.unsafeDB.QueryRow(ctx, query, info.Start, info.End, info.End, info.End, info.Start, info.End).Scan(&info.FlagsCount, &info.TeamsCount, &info.CountriesCount, &info.TasksUnsolvedCount); err != nil {
 		return info, err
 	}
 	return info, nil
